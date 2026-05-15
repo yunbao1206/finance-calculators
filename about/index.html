@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About FinanceToolHub - Free Online Financial Calculators</title>
+  <meta name="description" content="Learn about FinanceToolHub — free, accurate financial calculators to help you make smarter money decisions.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        FinanceToolHub
+      </a>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumb">
+      <a href="/">Home</a> / <span>About</span>
+    </nav>
+
+    <div class="calc-page">
+      <h1>About FinanceToolHub</h1>
+
+      <div class="seo-block full-width">
+        <h2>Our Mission</h2>
+        <p>FinanceToolHub provides free, accurate, and easy-to-use financial calculators to help you make smarter money decisions. Whether you're buying a home, comparing loans, planning investments, or paying off debt — we give you the numbers you need, instantly.</p>
+
+        <h2>Why Trust Our Calculators?</h2>
+        <ul>
+          <li><strong>Accurate formulas</strong> — We use the same calculation methods used by banks and financial institutions.</li>
+          <li><strong>No hidden fees</strong> — Our calculators are 100% free. No sign-up, no email required, no premium tiers.</li>
+          <li><strong>Privacy first</strong> — All calculations happen in your browser. We never store or transmit your financial data.</li>
+          <li><strong>Mobile friendly</strong> — Use our tools on any device, anywhere.</li>
+        </ul>
+
+        <h2>Our Calculators</h2>
+        <ul>
+          <li><a href="/mortgage-calculator/">Mortgage Calculator</a> — Monthly payments and amortization schedules</li>
+          <li><a href="/loan-calculator/">Loan Calculator</a> — Personal and business loan payments</li>
+          <li><a href="/compound-interest-calculator/">Compound Interest Calculator</a> — Investment growth projections</li>
+          <li><a href="/credit-card-payoff-calculator/">Credit Card Payoff Calculator</a> — Debt payoff strategies</li>
+          <li><a href="/auto-loan-calculator/">Auto Loan Calculator</a> — Car payment estimates</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>Have questions or suggestions? We'd love to hear from you. Reach us at <strong>contact@wiseclick.site</strong>.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms of Service</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
