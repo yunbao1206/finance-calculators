@@ -12,10 +12,43 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Savings Calculator","description":"Free savings goal and growth calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
   </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much should I save each month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Follow the 50/30/20 rule: 50% needs, 30% wants, 20% savings/debt repayment. On $5,000/month take-home, that's $1,000/month toward savings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does compound interest help my savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With a 4.5% APY on $500/month, you deposit $30,000 over 5 years but end up with $33,700 \u2014 $3,700 in free money from interest. Over 20 years, your $120,000 in deposits grows to $195,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I save or invest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Save for goals within 5 years (down payment, emergency fund). Invest for longer-term goals (retirement, college). Savings are safe but returns are lower. Investing has higher potential but with risk."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header class="site-header"><div class="header-inner">
-    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>WiseClick</a>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <ul class="nav-links">
         <li><a href="/" id="nav-home">Home</a></li>
@@ -109,7 +142,8 @@
 
   <footer class="site-footer"><div class="footer-inner">
     <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
-    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+    <div class="cross-site-links"><span>More WiseClick Tools:</span><a href="https://wiseclick.site/" target="_blank" rel="noopener">WiseClick Home</a><a href="https://insure.wiseclick.site/" target="_blank" rel="noopener">Insurance Calculators</a><a href="https://fit.wiseclick.site/" target="_blank" rel="noopener">Health & Fitness Calculators</a></div>
+      <p class="footer-copy">&copy; 2026 WiseClick. All rights reserved.</p>
   </div></footer>
 
   <script>
