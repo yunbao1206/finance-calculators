@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>401k Calculator - Estimate Your 401(k) Growth & Retirement Savings</title>
+  <meta name="description" content="Free 401k calculator. Estimate how much your 401(k) will grow with employer matching, contributions, and compound interest over time.">
+  <meta name="keywords" content="401k calculator, 401k growth calculator, retirement savings, employer match calculator, 401k contribution calculator">
+  <link rel="canonical" href="https://calc.wiseclick.site/401k-calculator/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"401k Calculator","description":"Free 401k retirement savings growth calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+  </div></header>
+
+  <main>
+    <nav class="breadcrumb"><a href="/">Home</a> / <span>401k Calculator</span></nav>
+    <div class="calc-page">
+      <h1>401(k) Calculator</h1>
+      <p class="subtitle">See how your 401(k) grows over time with contributions and employer matching.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" onsubmit="return false;">
+          <div class="form-group"><label for="salary">Annual Salary ($)</label><input type="number" id="salary" value="80000" min="0" step="1000"></div>
+          <div class="form-group"><label for="contribution">Your Contribution (%)</label><input type="number" id="contribution" value="10" min="0" max="100" step="1"></div>
+          <div class="form-group"><label for="employer-match">Employer Match (%)</label><input type="number" id="employer-match" value="5" min="0" max="50" step="0.5"></div>
+          <div class="form-group"><label for="current-401k">Current 401(k) Balance ($)</label><input type="number" id="current-401k" value="30000" min="0" step="1000"></div>
+          <div class="form-group"><label for="annual-raise">Expected Annual Raise (%)</label><input type="number" id="annual-raise" value="3" min="0" max="15" step="0.5"></div>
+          <div class="form-group"><label for="return-rate">Expected Return (%)</label><input type="number" id="return-rate" value="7" min="0" max="20" step="0.1"></div>
+          <div class="form-group"><label for="years-401k">Years to Retirement</label><input type="number" id="years-401k" value="35" min="1" max="50"></div>
+          <button type="button" class="btn-calculate" onclick="calc401k()">Calculate</button>
+        </form>
+        <div class="calc-results" id="results">
+          <div class="result-highlight"><div class="label">401(k) at Retirement</div><div class="value" id="total-401k">$0</div></div>
+          <div class="result-details">
+            <div class="result-item"><div class="label">Your Contributions</div><div class="value" id="your-contrib">$0</div></div>
+            <div class="result-item"><div class="label">Employer Match</div><div class="value" id="employer-contrib">$0</div></div>
+            <div class="result-item"><div class="label">Investment Growth</div><div class="value" id="growth">$0</div></div>
+            <div class="result-item"><div class="label">Monthly Retirement Income (4%)</div><div class="value" id="monthly-retire">$0</div></div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">📋</div>
+            <h3>Optimize Your Retirement Account</h3>
+            <p>Compare IRA and brokerage options to make the most of your retirement savings.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Compare Options</a>
+            <p class="affiliate-disclosure">We may earn a referral fee if you open an account. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How the 401(k) Works</h2>
+          <p>A 401(k) is an employer-sponsored retirement account with tax advantages. In 2026, you can contribute up to <strong>$23,500</strong> per year (plus $7,500 catch-up if 50+).</p>
+          <h3>Why Employer Match Is Free Money</h3>
+          <p>If your employer matches 5% and you earn $80K, that's <strong>$4,000/year free</strong>. Over 35 years at 7% return, that match alone grows to over $550K. Always contribute at least enough to get the full match.</p>
+        </div>
+        <div class="seo-block">
+          <h2>Traditional vs Roth 401(k)</h2>
+          <ul>
+            <li><strong>Traditional 401(k)</strong> — Contributions are pre-tax. Pay taxes when you withdraw in retirement. Best if you expect to be in a lower tax bracket later.</li>
+            <li><strong>Roth 401(k)</strong> — Contributions are after-tax. Withdrawals are tax-free. Best if you expect higher taxes in retirement or are in a low bracket now.</li>
+          </ul>
+          <h3>401(k) Contribution Limits (2026)</h3>
+          <ul>
+            <li>Employee: $23,500</li>
+            <li>Catch-up (age 50+): additional $7,500</li>
+            <li>Total (employee + employer): $70,000</li>
+          </ul>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>How much should I contribute to my 401(k)?</h3>
+          <p>At minimum, contribute enough to get your full employer match (typically 3-6%). Ideally, aim for 10-15% of your salary. If you can max out the $23,500 limit, even better.</p>
+          <h3>What happens if I change jobs?</h3>
+          <p>You can roll your 401(k) into your new employer's plan, roll it into an IRA, or leave it where it is. Rolling into an IRA gives you more investment options and often lower fees.</p>
+          <h3>Can I withdraw from my 401(k) early?</h3>
+          <p>Withdrawals before age 59½ typically incur a 10% penalty plus taxes. Exceptions include hardship withdrawals, certain medical expenses, and Rule of 55 (leaving your job at 55+).</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
+    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+  </div></footer>
+
+  <script>
+  function calc401k() {
+    let salary = +document.getElementById('salary').value;
+    const myPct = (+document.getElementById('contribution').value || 0) / 100;
+    const matchPct = (+document.getElementById('employer-match').value || 0) / 100;
+    let balance = +document.getElementById('current-401k').value || 0;
+    const raiseRate = (+document.getElementById('annual-raise').value || 0) / 100;
+    const returnRate = (+document.getElementById('return-rate').value || 0) / 100;
+    const years = +document.getElementById('years-401k').value;
+    const LIMIT = 23500;
+
+    let totalMyContrib = 0, totalEmployer = 0;
+    for (let y = 0; y < years; y++) {
+      const myContrib = Math.min(salary * myPct, LIMIT);
+      const empContrib = salary * matchPct;
+      totalMyContrib += myContrib;
+      totalEmployer += empContrib;
+      // Monthly contributions throughout the year
+      const monthlyReturn = Math.pow(1 + returnRate, 1/12) - 1;
+      const monthlyContrib = (myContrib + empContrib) / 12;
+      for (let m = 0; m < 12; m++) {
+        balance = (balance + monthlyContrib) * (1 + monthlyReturn);
+      }
+      salary *= (1 + raiseRate);
+    }
+
+    const growth = balance - totalMyContrib - totalEmployer;
+    const monthlyRetire = balance * 0.04 / 12;
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+    document.getElementById('total-401k').textContent = fmt(balance);
+    document.getElementById('your-contrib').textContent = fmt(totalMyContrib);
+    document.getElementById('employer-contrib').textContent = fmt(totalEmployer);
+    document.getElementById('growth').textContent = fmt(growth);
+    document.getElementById('monthly-retire').textContent = fmt(monthlyRetire);
+    document.getElementById('results').classList.add('visible');
+  }
+  calc401k();
+  </script>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
