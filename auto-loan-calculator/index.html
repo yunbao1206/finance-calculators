@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Loan Calculator - Free Car Payment Calculator</title>
+  <meta name="description" content="Free auto loan calculator. Estimate your monthly car payment, total interest, and compare different loan terms. Make smart car-buying decisions.">
+  <meta name="keywords" content="auto loan calculator, car payment calculator, car loan calculator, auto finance calculator">
+  <link rel="canonical" href="https://calc.wiseclick.site/auto-loan-calculator/">
+  <meta property="og:title" content="Free Auto Loan Calculator - Monthly Car Payment">
+  <meta property="og:description" content="Calculate your monthly car payment and total loan cost. Compare different terms and rates.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Auto Loan Calculator",
+    "description": "Free online auto loan and car payment calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        FinanceToolHub
+      </a>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumb">
+      <a href="/">Home</a> / <span>Auto Loan Calculator</span>
+    </nav>
+
+    <div class="calc-page">
+      <h1>Auto Loan Calculator</h1>
+      <p class="subtitle">Calculate your monthly car payment and total loan cost before you buy.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" id="auto-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="car-price">Vehicle Price ($)</label>
+            <input type="number" id="car-price" value="35000" min="1000" step="500">
+          </div>
+          <div class="form-group">
+            <label for="car-down">Down Payment ($)</label>
+            <input type="number" id="car-down" value="5000" min="0" step="500">
+          </div>
+          <div class="form-group">
+            <label for="car-trade">Trade-in Value ($)</label>
+            <input type="number" id="car-trade" value="0" min="0" step="500">
+          </div>
+          <div class="form-group">
+            <label for="car-rate">Interest Rate (%)</label>
+            <input type="number" id="car-rate" value="6.9" min="0" max="30" step="0.1">
+          </div>
+          <div class="form-group">
+            <label for="car-term">Loan Term</label>
+            <select id="car-term">
+              <option value="24">24 months</option>
+              <option value="36">36 months</option>
+              <option value="48">48 months</option>
+              <option value="60" selected>60 months</option>
+              <option value="72">72 months</option>
+              <option value="84">84 months</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="car-sales-tax">Sales Tax (%)</label>
+            <input type="number" id="car-sales-tax" value="6" min="0" max="20" step="0.25">
+          </div>
+          <button type="button" class="btn-calculate" onclick="calculateAuto()">Calculate</button>
+        </form>
+
+        <div class="calc-results" id="results">
+          <div class="result-highlight">
+            <div class="label">Monthly Payment</div>
+            <div class="value" id="monthly-payment">$0</div>
+          </div>
+          <div class="result-details">
+            <div class="result-item">
+              <div class="label">Loan Amount</div>
+              <div class="value" id="loan-amount">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total Interest</div>
+              <div class="value" id="total-interest">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total Cost</div>
+              <div class="value" id="total-cost">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total with Down Payment</div>
+              <div class="value" id="total-with-down">$0</div>
+            </div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">🚗</div>
+            <h3>Get Pre-approved for an Auto Loan</h3>
+            <p>Compare rates from multiple lenders before you visit the dealership. Save thousands.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Get Auto Loan Quotes</a>
+            <p class="affiliate-disclosure">We may earn a referral fee if you apply for a loan. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How to Use This Auto Loan Calculator</h2>
+          <p>Enter the vehicle price, your down payment, trade-in value (if any), interest rate, and loan term. The calculator shows:</p>
+          <ul>
+            <li><strong>Monthly payment</strong> — your fixed monthly obligation</li>
+            <li><strong>Total interest</strong> — how much you pay the lender over the life of the loan</li>
+            <li><strong>Total cost</strong> — the full amount including the car price, taxes, and interest</li>
+          </ul>
+          <p>Sales tax is applied to (vehicle price - trade-in value), which is the standard in most states.</p>
+        </div>
+        <div class="seo-block">
+          <h2>Tips for Getting the Best Auto Loan</h2>
+          <ul>
+            <li><strong>Get pre-approved</strong> — know your rate before walking into the dealership.</li>
+            <li><strong>Put at least 20% down</strong> — avoids being "upside down" on the loan.</li>
+            <li><strong>Keep the term under 60 months</strong> — longer terms mean more interest and negative equity risk.</li>
+            <li><strong>Don't finance taxes and fees</strong> — pay them upfront if possible.</li>
+            <li><strong>Negotiate the car price, not the monthly payment</strong> — dealers can manipulate terms to hit any monthly number.</li>
+          </ul>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>What is a good interest rate for a car loan?</h3>
+          <p>As of 2026, excellent credit (750+) borrowers can expect 4-6% on new cars and 5-8% on used cars. Good credit (650-749) typically gets 6-10%. Subprime borrowers may see 10-20%+.</p>
+          <h3>Should I lease or buy?</h3>
+          <p>Buying builds equity. Leasing gives lower monthly payments but no ownership. If you drive less than 12,000 miles/year and like new cars every 3 years, leasing may make sense. Otherwise, buying is usually the better financial decision.</p>
+          <h3>How much should my car payment be?</h3>
+          <p>Financial experts recommend keeping total vehicle expenses (payment + insurance + gas + maintenance) under 15-20% of your take-home pay. Use this calculator to find a payment that fits your budget.</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms of Service</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  function calculateAuto() {
+    const price = parseFloat(document.getElementById('car-price').value);
+    const down = parseFloat(document.getElementById('car-down').value) || 0;
+    const tradeIn = parseFloat(document.getElementById('car-trade').value) || 0;
+    const rate = parseFloat(document.getElementById('car-rate').value);
+    const months = parseInt(document.getElementById('car-term').value);
+    const taxRate = parseFloat(document.getElementById('car-sales-tax').value) / 100;
+
+    if (!price || !rate || !months) return;
+
+    const taxableAmount = price - tradeIn;
+    const salesTax = Math.max(0, taxableAmount * taxRate);
+    const loanAmount = price + salesTax - down - tradeIn;
+
+    if (loanAmount <= 0) { alert('Down payment + trade-in exceeds vehicle cost.'); return; }
+
+    const monthlyRate = rate / 100 / 12;
+    let monthly;
+    if (monthlyRate === 0) {
+      monthly = loanAmount / months;
+    } else {
+      monthly = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+    }
+
+    const totalRepayment = monthly * months;
+    const totalInterest = totalRepayment - loanAmount;
+    const totalCost = price + salesTax + totalInterest;
+    const totalWithDown = totalCost + down;
+
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+    document.getElementById('monthly-payment').textContent = fmt(monthly);
+    document.getElementById('loan-amount').textContent = fmt(loanAmount);
+    document.getElementById('total-interest').textContent = fmt(totalInterest);
+    document.getElementById('total-cost').textContent = fmt(totalCost);
+    document.getElementById('total-with-down').textContent = fmt(totalWithDown);
+    document.getElementById('results').classList.add('visible');
+  }
+
+  calculateAuto();
+  </script>
+
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
