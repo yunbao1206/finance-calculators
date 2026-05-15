@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement Calculator - How Much Do You Need to Retire?</title>
+  <meta name="description" content="Free retirement calculator. Estimate how much you need to save for retirement, when you can retire, and how long your savings will last.">
+  <meta name="keywords" content="retirement calculator, retirement planning, how much to save for retirement, retirement savings calculator, FIRE calculator">
+  <link rel="canonical" href="https://calc.wiseclick.site/retirement-calculator/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Retirement Calculator","description":"Free online retirement planning calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much do I need to retire?","acceptedAnswer":{"@type":"Answer","text":"Most experts recommend saving 10-12 times your annual income by retirement age. The 4% rule suggests you can safely withdraw 4% of your portfolio annually."}},{"@type":"Question","name":"What is the 4% rule?","acceptedAnswer":{"@type":"Answer","text":"The 4% rule states that you can withdraw 4% of your retirement savings in the first year, then adjust for inflation each year, with a high probability of not running out of money for 30 years."}}]}
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+  </div></header>
+
+  <main>
+    <nav class="breadcrumb"><a href="/">Home</a> / <span>Retirement Calculator</span></nav>
+    <div class="calc-page">
+      <h1>Retirement Calculator</h1>
+      <p class="subtitle">Estimate how much you need to save for retirement and when you can stop working.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" onsubmit="return false;">
+          <div class="form-group"><label for="current-age">Current Age</label><input type="number" id="current-age" value="30" min="18" max="80"></div>
+          <div class="form-group"><label for="retire-age">Desired Retirement Age</label><input type="number" id="retire-age" value="65" min="30" max="85"></div>
+          <div class="form-group"><label for="current-savings">Current Savings ($)</label><input type="number" id="current-savings" value="50000" min="0" step="1000"></div>
+          <div class="form-group"><label for="monthly-save">Monthly Contribution ($)</label><input type="number" id="monthly-save" value="1000" min="0" step="50"></div>
+          <div class="form-group"><label for="annual-income">Desired Annual Income in Retirement ($)</label><input type="number" id="annual-income" value="60000" min="0" step="1000"></div>
+          <div class="form-group"><label for="annual-return">Expected Annual Return (%)</label><input type="number" id="annual-return" value="7" min="0" max="20" step="0.1"></div>
+          <div class="form-group"><label for="inflation">Expected Inflation (%)</label><input type="number" id="inflation" value="3" min="0" max="10" step="0.1"></div>
+          <div class="form-group"><label for="ss-income">Monthly Social Security ($)</label><input type="number" id="ss-income" value="2000" min="0" step="100"></div>
+          <button type="button" class="btn-calculate" onclick="calcRetire()">Calculate</button>
+        </form>
+        <div class="calc-results" id="results">
+          <div class="result-highlight"><div class="label">Savings at Retirement</div><div class="value" id="savings-at-retire">$0</div></div>
+          <div class="result-details">
+            <div class="result-item"><div class="label">Amount Needed (4% Rule)</div><div class="value" id="amount-needed">$0</div></div>
+            <div class="result-item"><div class="label">Surplus / Shortfall</div><div class="value" id="surplus">$0</div></div>
+            <div class="result-item"><div class="label">Monthly Income from Savings</div><div class="value" id="monthly-income">$0</div></div>
+            <div class="result-item"><div class="label">Total Monthly Income (w/ SS)</div><div class="value" id="total-monthly">$0</div></div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">🏖️</div>
+            <h3>Plan Your Retirement with a Pro</h3>
+            <p>Get a free retirement assessment from a certified financial planner.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Get Free Assessment</a>
+            <p class="affiliate-disclosure">We may earn a referral fee for recommendations. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How Much Do You Need to Retire?</h2>
+          <p>The amount you need depends on your desired lifestyle, location, and healthcare costs. Most financial planners recommend the <strong>4% rule</strong>: multiply your desired annual spending by 25 to get your target nest egg.</p>
+          <ul>
+            <li><strong>$40K/year</strong> → need $1,000,000</li>
+            <li><strong>$60K/year</strong> → need $1,500,000</li>
+            <li><strong>$80K/year</strong> → need $2,000,000</li>
+            <li><strong>$100K/year</strong> → need $2,500,000</li>
+          </ul>
+        </div>
+        <div class="seo-block">
+          <h2>Tips to Reach Retirement Faster</h2>
+          <ul>
+            <li><strong>Start now</strong> — Time is your biggest asset. $500/month at 7% for 35 years = $829K.</li>
+            <li><strong>Max your 401k</strong> — $23,000/year limit (2026) plus employer match = free money.</li>
+            <li><strong>Use Roth IRA</strong> — Tax-free growth and withdrawals in retirement.</li>
+            <li><strong>Keep fees low</strong> — Index funds charge 0.03% vs. 1%+ for active funds.</li>
+            <li><strong>Avoid lifestyle inflation</strong> — Invest raises instead of spending them.</li>
+          </ul>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>What is the 4% rule?</h3>
+          <p>The 4% rule comes from the "Trinity Study." It found that withdrawing 4% of your portfolio in year one, then adjusting for inflation, has a 95%+ success rate of lasting 30 years across a mix of stocks and bonds.</p>
+          <h3>Can I retire early (FIRE)?</h3>
+          <p>Yes! The FIRE (Financial Independence, Retire Early) movement shows that saving 50%+ of your income can let you retire in 10-17 years instead of 40+. Use this calculator to model different savings rates.</p>
+          <h3>Should I include Social Security?</h3>
+          <p>Yes, but be conservative. Social Security replaces about 40% of pre-retirement income for average earners. Check your estimated benefits at ssa.gov.</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
+    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+  </div></footer>
+
+  <script>
+  function calcRetire() {
+    const age = +document.getElementById('current-age').value;
+    const retireAge = +document.getElementById('retire-age').value;
+    const savings = +document.getElementById('current-savings').value || 0;
+    const monthly = +document.getElementById('monthly-save').value || 0;
+    const income = +document.getElementById('annual-income').value || 0;
+    const rate = (+document.getElementById('annual-return').value || 0) / 100;
+    const infl = (+document.getElementById('inflation').value || 0) / 100;
+    const ss = +document.getElementById('ss-income').value || 0;
+
+    const years = retireAge - age;
+    if (years <= 0) return;
+    const realRate = (1 + rate) / (1 + infl) - 1;
+    const monthlyRate = realRate / 12;
+    const n = years * 12;
+
+    let futureValue;
+    if (monthlyRate === 0) {
+      futureValue = savings + monthly * n;
+    } else {
+      futureValue = savings * Math.pow(1 + monthlyRate, n) + monthly * (Math.pow(1 + monthlyRate, n) - 1) / monthlyRate;
+    }
+
+    const needed = income * 25;
+    const surplus = futureValue - needed;
+    const monthlyFromSavings = futureValue * 0.04 / 12;
+    const totalMonthly = monthlyFromSavings + ss;
+
+    const fmt = v => '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    const sign = v => v >= 0 ? fmt(v) : '-' + fmt(v);
+
+    document.getElementById('savings-at-retire').textContent = fmt(futureValue);
+    document.getElementById('amount-needed').textContent = fmt(needed);
+    const surplusEl = document.getElementById('surplus');
+    surplusEl.textContent = (surplus >= 0 ? '+' : '-') + fmt(Math.abs(surplus));
+    surplusEl.style.color = surplus >= 0 ? 'var(--success)' : 'var(--danger)';
+    document.getElementById('monthly-income').textContent = fmt(monthlyFromSavings);
+    document.getElementById('total-monthly').textContent = fmt(totalMonthly);
+    document.getElementById('results').classList.add('visible');
+  }
+  calcRetire();
+  </script>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
