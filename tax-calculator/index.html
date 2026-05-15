@@ -12,10 +12,43 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Federal Income Tax Calculator","description":"Free 2026 federal income tax estimator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
   </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between marginal and effective tax rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your marginal rate is the rate on your last dollar of income (your \"bracket\"). Your effective rate is the average rate you pay across all income \u2014 always lower than your marginal rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator include state taxes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, this calculator estimates federal income tax only. State tax rates vary from 0% (TX, FL, WA) to 13%+ (CA). Use our Paycheck Calculator for state-specific estimates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is this estimate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator provides a reasonable estimate based on federal brackets and standard deductions. Your actual tax may vary based on credits, deductions, investment income, and other factors."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header class="site-header"><div class="header-inner">
-    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>WiseClick</a>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <ul class="nav-links">
         <li><a href="/" id="nav-home">Home</a></li>
@@ -112,7 +145,8 @@
 
   <footer class="site-footer"><div class="footer-inner">
     <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
-    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+    <div class="cross-site-links"><span>More WiseClick Tools:</span><a href="https://wiseclick.site/" target="_blank" rel="noopener">WiseClick Home</a><a href="https://insure.wiseclick.site/" target="_blank" rel="noopener">Insurance Calculators</a><a href="https://fit.wiseclick.site/" target="_blank" rel="noopener">Health & Fitness Calculators</a></div>
+      <p class="footer-copy">&copy; 2026 WiseClick. All rights reserved.</p>
   </div></footer>
 
   <script>
