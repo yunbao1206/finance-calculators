@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator - Free Monthly Payment & Amortization Schedule</title>
+  <meta name="description" content="Free mortgage calculator to estimate your monthly payment, total interest, and amortization schedule. See how down payment and interest rate affect your mortgage.">
+  <meta name="keywords" content="mortgage calculator, monthly mortgage payment, amortization schedule, home loan calculator">
+  <link rel="canonical" href="https://calc.wiseclick.site/mortgage-calculator/">
+  <meta property="og:title" content="Free Mortgage Calculator - Monthly Payment & Amortization">
+  <meta property="og:description" content="Calculate your monthly mortgage payment and view a full amortization schedule. Free and accurate.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mortgage Calculator",
+    "description": "Free online mortgage calculator with amortization schedule",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is my monthly mortgage payment calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your monthly payment is calculated using the formula: M = P[r(1+r)^n]/[(1+r)^n-1], where P is the loan principal, r is the monthly interest rate, and n is the total number of payments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much house can I afford?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most financial advisors recommend spending no more than 28% of your gross monthly income on housing costs, including mortgage, taxes, and insurance."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        FinanceToolHub
+      </a>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumb">
+      <a href="/">Home</a> / <span>Mortgage Calculator</span>
+    </nav>
+
+    <div class="calc-page">
+      <h1>Mortgage Calculator</h1>
+      <p class="subtitle">Calculate your monthly payment, total interest, and view a detailed amortization schedule.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" id="mortgage-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="home-price">Home Price ($)</label>
+            <input type="number" id="home-price" value="300000" min="1000" step="1000">
+          </div>
+          <div class="form-group">
+            <label for="down-payment">Down Payment ($)</label>
+            <input type="number" id="down-payment" value="60000" min="0" step="1000">
+          </div>
+          <div class="form-group">
+            <label for="interest-rate">Interest Rate (%)</label>
+            <input type="number" id="interest-rate" value="6.5" min="0" max="30" step="0.1">
+          </div>
+          <div class="form-group">
+            <label for="loan-term">Loan Term (years)</label>
+            <select id="loan-term">
+              <option value="30" selected>30 years</option>
+              <option value="20">20 years</option>
+              <option value="15">15 years</option>
+              <option value="10">10 years</option>
+            </select>
+          </div>
+          <button type="button" class="btn-calculate" onclick="calculateMortgage()">Calculate</button>
+        </form>
+
+        <div class="calc-results" id="results">
+          <div class="result-highlight">
+            <div class="label">Monthly Payment</div>
+            <div class="value" id="monthly-payment">$0</div>
+          </div>
+          <div class="result-details">
+            <div class="result-item">
+              <div class="label">Loan Amount</div>
+              <div class="value" id="loan-amount">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total Interest</div>
+              <div class="value" id="total-interest">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total Payment</div>
+              <div class="value" id="total-payment">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Payoff Date</div>
+              <div class="value" id="payoff-date">-</div>
+            </div>
+          </div>
+          <button class="amort-toggle" onclick="toggleAmortization()">Show Amortization Schedule</button>
+          <div class="amort-table-wrapper" id="amort-wrapper">
+            <table class="amort-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Principal Paid</th>
+                  <th>Interest Paid</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="amort-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">🏠</div>
+            <h3>Compare Today's Mortgage Rates</h3>
+            <p>See personalized rates from top lenders. No commitment, free to compare.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Get Free Rate Quotes</a>
+            <p class="affiliate-disclosure">We may earn a referral fee if you request a rate quote. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How to Use This Mortgage Calculator</h2>
+          <p>Enter your home price, down payment, interest rate, and loan term to get an instant estimate of your monthly mortgage payment. The calculator shows you:</p>
+          <ul>
+            <li><strong>Monthly payment</strong> — principal and interest only</li>
+            <li><strong>Total interest</strong> — how much you pay the bank over the life of the loan</li>
+            <li><strong>Total cost</strong> — the full amount you repay</li>
+            <li><strong>Amortization schedule</strong> — year-by-year breakdown of principal vs. interest</li>
+          </ul>
+          <h3>Mortgage Payment Formula</h3>
+          <p>The monthly payment is calculated using: <strong>M = P[r(1+r)^n] / [(1+r)^n - 1]</strong></p>
+          <p>Where P = loan principal, r = monthly interest rate (annual rate / 12), n = total number of payments (years × 12).</p>
+        </div>
+        <div class="seo-block">
+          <h2>Tips to Lower Your Mortgage Payment</h2>
+          <ul>
+            <li><strong>Increase your down payment</strong> — 20% or more eliminates PMI (Private Mortgage Insurance).</li>
+            <li><strong>Choose a shorter term</strong> — 15-year loans have lower rates, though higher monthly payments.</li>
+            <li><strong>Improve your credit score</strong> — even a 20-point increase can save thousands in interest.</li>
+            <li><strong>Shop multiple lenders</strong> — rates vary by 0.25–0.5% between lenders.</li>
+            <li><strong>Buy discount points</strong> — paying upfront can lower your rate by 0.25% per point.</li>
+          </ul>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>How is my monthly mortgage payment calculated?</h3>
+          <p>Your monthly payment is calculated using the standard amortization formula. It includes principal repayment and interest charges. Property taxes, homeowners insurance, and PMI are separate costs not included in this calculation.</p>
+          <h3>How much house can I afford?</h3>
+          <p>Most financial advisors recommend spending no more than 28% of your gross monthly income on housing costs. This includes mortgage principal, interest, property taxes, and insurance (PITI).</p>
+          <h3>Should I choose a 15-year or 30-year mortgage?</h3>
+          <p>A 30-year mortgage gives lower monthly payments but costs more in total interest. A 15-year mortgage has higher payments but saves significantly on interest. Use this calculator to compare both options.</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms of Service</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  function calculateMortgage() {
+    const homePrice = parseFloat(document.getElementById('home-price').value);
+    const downPayment = parseFloat(document.getElementById('down-payment').value);
+    const annualRate = parseFloat(document.getElementById('interest-rate').value);
+    const years = parseInt(document.getElementById('loan-term').value);
+
+    if (!homePrice || !annualRate || !years) return;
+
+    const principal = homePrice - downPayment;
+    if (principal <= 0) { alert('Down payment cannot exceed home price.'); return; }
+
+    const monthlyRate = annualRate / 100 / 12;
+    const n = years * 12;
+
+    let monthly;
+    if (monthlyRate === 0) {
+      monthly = principal / n;
+    } else {
+      monthly = principal * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    }
+
+    const totalPayment = monthly * n;
+    const totalInterest = totalPayment - principal;
+
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+    document.getElementById('monthly-payment').textContent = fmt(monthly);
+    document.getElementById('loan-amount').textContent = fmt(principal);
+    document.getElementById('total-interest').textContent = fmt(totalInterest);
+    document.getElementById('total-payment').textContent = fmt(totalPayment);
+
+    const payoffDate = new Date();
+    payoffDate.setMonth(payoffDate.getMonth() + n);
+    document.getElementById('payoff-date').textContent = payoffDate.toLocaleDateString('en-US', {month: 'long', year: 'numeric'});
+
+    // Amortization schedule (yearly)
+    let balance = principal;
+    let tbody = '';
+    for (let year = 1; year <= years; year++) {
+      let yearPrincipal = 0, yearInterest = 0;
+      for (let m = 0; m < 12; m++) {
+        const interestPayment = balance * monthlyRate;
+        const principalPayment = monthly - interestPayment;
+        yearPrincipal += principalPayment;
+        yearInterest += interestPayment;
+        balance -= principalPayment;
+      }
+      tbody += `<tr><td>Year ${year}</td><td>${fmt(yearPrincipal)}</td><td>${fmt(yearInterest)}</td><td>${fmt(Math.max(0, balance))}</td></tr>`;
+    }
+    document.getElementById('amort-body').innerHTML = tbody;
+
+    document.getElementById('results').classList.add('visible');
+    document.getElementById('amort-wrapper').classList.remove('visible');
+  }
+
+  function toggleAmortization() {
+    document.getElementById('amort-wrapper').classList.toggle('visible');
+  }
+
+  calculateMortgage();
+  </script>
+
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
