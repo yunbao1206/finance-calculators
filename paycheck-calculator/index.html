@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paycheck Calculator - Free Take-Home Pay Calculator by State</title>
+  <meta name="description" content="Free paycheck calculator. Estimate your take-home pay after federal and state taxes. Select your state for accurate state tax calculations.">
+  <meta name="keywords" content="paycheck calculator, take home pay calculator, salary calculator, after tax income calculator, paycheck calculator by state">
+  <link rel="canonical" href="https://calc.wiseclick.site/paycheck-calculator/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Paycheck Calculator","description":"Free paycheck and take-home pay calculator with state tax support","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+  </div></header>
+
+  <main>
+    <nav class="breadcrumb"><a href="/">Home</a> / <span>Paycheck Calculator</span></nav>
+    <div class="calc-page">
+      <h1>Paycheck Calculator</h1>
+      <p class="subtitle">Estimate your take-home pay after federal and state taxes.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" onsubmit="return false;">
+          <div class="form-group"><label for="salary-input">Annual Salary ($)</label><input type="number" id="salary-input" value="75000" min="0" step="1000"></div>
+          <div class="form-group"><label for="pay-freq">Pay Frequency</label>
+            <select id="pay-freq"><option value="26" selected>Bi-weekly (26 paychecks)</option><option value="24">Semi-monthly (24)</option><option value="52">Weekly (52)</option><option value="12">Monthly (12)</option></select>
+          </div>
+          <div class="form-group"><label for="state-select">State</label>
+            <select id="state-select">
+              <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option>
+              <option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL" selected>Florida</option><option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option>
+              <option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option>
+              <option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option>
+              <option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group"><label for="filing-select">Filing Status</label>
+            <select id="filing-select"><option value="single">Single</option><option value="married">Married</option></select>
+          </div>
+          <div class="form-group"><label for="pretax-deduction">Pre-tax Deductions ($/year)</label><input type="number" id="pretax-deduction" value="5000" min="0" step="500"></div>
+          <button type="button" class="btn-calculate" onclick="calcPaycheck()">Calculate</button>
+        </form>
+        <div class="calc-results" id="results">
+          <div class="result-highlight"><div class="label">Take-Home Pay Per Paycheck</div><div class="value" id="takehome">$0</div></div>
+          <div class="result-details">
+            <div class="result-item"><div class="label">Gross Per Paycheck</div><div class="value" id="gross-pay">$0</div></div>
+            <div class="result-item"><div class="label">Federal Tax</div><div class="value" id="fed-tax">$0</div></div>
+            <div class="result-item"><div class="label">State Tax</div><div class="value" id="state-tax">$0</div></div>
+            <div class="result-item"><div class="label">Social Security + Medicare</div><div class="value" id="fica">$0</div></div>
+            <div class="result-item"><div class="label">Annual Take-Home</div><div class="value" id="annual-takehome">$0</div></div>
+            <div class="result-item"><div class="label">Effective Tax Rate</div><div class="value" id="eff-rate">0%</div></div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">💵</div>
+            <h3>Optimize Your Take-Home Pay</h3>
+            <p>Find tax-advantaged accounts and benefits to maximize every paycheck.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Learn More</a>
+            <p class="affiliate-disclosure">We may earn a referral fee for recommendations. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How Paycheck Calculations Work</h2>
+          <p>Your take-home pay is what remains after these deductions:</p>
+          <ul>
+            <li><strong>Federal income tax</strong> — Based on progressive tax brackets (10% to 37%)</li>
+            <li><strong>State income tax</strong> — Varies by state (0% in TX, FL, WA to 13.3% in CA)</li>
+            <li><strong>Social Security</strong> — 6.2% up to $176,100 (2026)</li>
+            <li><strong>Medicare</strong> — 1.45% (plus 0.9% over $200K)</li>
+            <li><strong>Pre-tax deductions</strong> — 401(k), HSA, health insurance</li>
+          </ul>
+        </div>
+        <div class="seo-block">
+          <h2>States With No Income Tax</h2>
+          <ul>
+            <li>Texas</li><li>Florida</li><li>Washington</li><li>Nevada</li>
+            <li>Wyoming</li><li>South Dakota</li><li>Alaska</li><li>Tennessee</li>
+            <li>New Hampshire (dividends only)</li>
+          </ul>
+          <p>Living in these states means higher take-home pay. But some make up revenue through higher sales or property taxes.</p>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Paycheck Calculator by State</h2>
+          <p>Select your state above for accurate results, or use these quick links:</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.5rem;margin-top:1rem;font-size:0.875rem">
+            <a href="/paycheck-calculator/california/">California</a><a href="/paycheck-calculator/texas/">Texas</a>
+            <a href="/paycheck-calculator/new-york/">New York</a><a href="/paycheck-calculator/florida/">Florida</a>
+            <a href="/paycheck-calculator/illinois/">Illinois</a><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a>
+            <a href="/paycheck-calculator/ohio/">Ohio</a><a href="/paycheck-calculator/georgia/">Georgia</a>
+            <a href="/paycheck-calculator/washington/">Washington</a><a href="/paycheck-calculator/colorado/">Colorado</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
+    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+  </div></footer>
+
+  <script>
+  const STATE_TAX = {AL:0.05,AK:0,AZ:0.025,AR:0.047,CA:0.0930,CO:0.044,CT:0.0699,DE:0.066,FL:0,GA:0.055,HI:0.0825,ID:0.058,IL:0.0495,IN:0.0315,IA:0.06,KS:0.057,KY:0.04,LA:0.0425,ME:0.0715,MD:0.0575,MA:0.05,MI:0.0425,MN:0.0985,MS:0.05,MO:0.048,MT:0.059,NE:0.0584,NV:0,NH:0,NJ:0.1075,NM:0.059,NY:0.109,NC:0.045,ND:0.025,OH:0.035,OK:0.0475,OR:0.099,PA:0.0307,RI:0.0599,SC:0.064,SD:0,TN:0,TX:0,UT:0.0465,VT:0.0875,VA:0.0575,WA:0,WV:0.055,WI:0.0765,WY:0};
+
+  function calcFedTax(taxable, status) {
+    const brackets = status === 'married'
+      ? [[23850,.10],[96950,.12],[206700,.22],[394600,.24],[500000,.32],[751600,.35],[Infinity,.37]]
+      : [[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]];
+    let tax=0, rem=taxable, prev=0;
+    for (const [lim,rate] of brackets) {
+      const chunk = Math.min(rem, lim - prev);
+      tax += chunk * rate;
+      rem -= chunk;
+      if (rem <= 0) break;
+      prev = lim;
+    }
+    return tax;
+  }
+
+  function calcPaycheck() {
+    const salary = +document.getElementById('salary-input').value || 0;
+    const periods = +document.getElementById('pay-freq').value;
+    const state = document.getElementById('state-select').value;
+    const filing = document.getElementById('filing-select').value;
+    const pretax = +document.getElementById('pretax-deduction').value || 0;
+
+    const grossPerPeriod = salary / periods;
+    const annualPretax = Math.min(pretax, salary);
+    const taxable = Math.max(0, salary - annualPretax - (filing === 'married' ? 30000 : 15000));
+
+    const fedTaxAnnual = calcFedTax(taxable, filing);
+    const stateTaxAnnual = (salary - annualPretax) * (STATE_TAX[state] || 0);
+    const ssTax = Math.min(salary, 176100) * 0.062;
+    const medicareTax = salary * 0.0145 + Math.max(0, salary - 200000) * 0.009;
+    const totalTax = fedTaxAnnual + stateTaxAnnual + ssTax + medicareTax;
+    const annualTakeHome = salary - totalTax - annualPretax;
+    const takeHomePerPeriod = annualTakeHome / periods;
+    const effRate = salary > 0 ? ((totalTax / salary) * 100).toFixed(1) : 0;
+
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+    document.getElementById('takehome').textContent = fmt(takeHomePerPeriod);
+    document.getElementById('gross-pay').textContent = fmt(grossPerPeriod);
+    document.getElementById('fed-tax').textContent = fmt(fedTaxAnnual / periods);
+    document.getElementById('state-tax').textContent = fmt(stateTaxAnnual / periods);
+    document.getElementById('fica').textContent = fmt((ssTax + medicareTax) / periods);
+    document.getElementById('annual-takehome').textContent = '$' + annualTakeHome.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    document.getElementById('eff-rate').textContent = effRate + '%';
+    document.getElementById('results').classList.add('visible');
+  }
+  calcPaycheck();
+  </script>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
