@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annuity Calculator - Estimate Annuity Payouts & Present Value</title>
+  <meta name="description" content="Free annuity calculator. Calculate annuity payouts, present value, and future value. Compare immediate vs. deferred annuities.">
+  <meta name="keywords" content="annuity calculator, annuity payout calculator, present value of annuity, future value annuity, annuity income calculator">
+  <link rel="canonical" href="https://calc.wiseclick.site/annuity-calculator/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Annuity Calculator","description":"Free annuity payout and present value calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+  </div></header>
+
+  <main>
+    <nav class="breadcrumb"><a href="/">Home</a> / <span>Annuity Calculator</span></nav>
+    <div class="calc-page">
+      <h1>Annuity Calculator</h1>
+      <p class="subtitle">Calculate annuity payouts, present value, and future value for retirement planning.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" onsubmit="return false;">
+          <div class="form-group"><label for="principal">Principal / Investment Amount ($)</label><input type="number" id="principal" value="500000" min="1000" step="1000"></div>
+          <div class="form-group"><label for="annuity-rate">Annual Interest Rate (%)</label><input type="number" id="annuity-rate" value="5" min="0" max="20" step="0.1"></div>
+          <div class="form-group"><label for="annuity-period">Payout Period (years)</label><input type="number" id="annuity-period" value="20" min="1" max="50"></div>
+          <div class="form-group"><label for="payout-freq">Payout Frequency</label>
+            <select id="payout-freq"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option></select>
+          </div>
+          <button type="button" class="btn-calculate" onclick="calcAnnuity()">Calculate</button>
+        </form>
+        <div class="calc-results" id="results">
+          <div class="result-highlight"><div class="label">Monthly Payout</div><div class="value" id="payout">$0</div></div>
+          <div class="result-details">
+            <div class="result-item"><div class="label">Total Payouts Received</div><div class="value" id="total-payouts">$0</div></div>
+            <div class="result-item"><div class="label">Total Interest Earned</div><div class="value" id="total-interest">$0</div></div>
+            <div class="result-item"><div class="label">Annual Payout</div><div class="value" id="annual-payout">$0</div></div>
+            <div class="result-item"><div class="label">Payout Ratio</div><div class="value" id="payout-ratio">0%</div></div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">🔄</div>
+            <h3>Compare Annuity Options</h3>
+            <p>Get personalized annuity quotes from top-rated providers. Free, no obligation.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Get Free Quotes</a>
+            <p class="affiliate-disclosure">We may earn a referral fee if you request a quote. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>What Is an Annuity?</h2>
+          <p>An annuity is a financial product that provides regular payments over a set period (or for life) in exchange for a lump-sum investment. It's commonly used for retirement income planning.</p>
+          <h3>Types of Annuities</h3>
+          <ul>
+            <li><strong>Fixed annuity</strong> — Guaranteed interest rate and payments. Predictable and safe.</li>
+            <li><strong>Variable annuity</strong> — Payments tied to investment performance. Higher potential, more risk.</li>
+            <li><strong>Immediate annuity</strong> — Payments start right after purchase.</li>
+            <li><strong>Deferred annuity</strong> — Payments start at a future date, allowing tax-deferred growth.</li>
+          </ul>
+        </div>
+        <div class="seo-block">
+          <h2>Is an Annuity Right for You?</h2>
+          <ul>
+            <li><strong>Pros</strong> — Guaranteed income, tax-deferred growth, protection from market downturns.</li>
+            <li><strong>Cons</strong> — High fees (2-3%+/year), limited liquidity, complex terms, inflation risk with fixed payouts.</li>
+          </ul>
+          <h3>When Annuities Make Sense</h3>
+          <ul>
+            <li>You've maxed out 401(k) and IRA contributions</li>
+            <li>You want guaranteed lifetime income</li>
+            <li>You're worried about outliving your savings</li>
+          </ul>
+          <h3>When to Avoid</h3>
+          <ul>
+            <li>You need liquidity and access to your money</li>
+            <li>You have sufficient retirement income from other sources</li>
+            <li>Fees outweigh the guaranteed income benefit</li>
+          </ul>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>How are annuity payments calculated?</h3>
+          <p>Payments are based on the principal, interest rate, and payout period. The formula uses the present value of an annuity: PMT = PV × [r(1+r)^n] / [(1+r)^n - 1].</p>
+          <h3>How much does a $500,000 annuity pay per month?</h3>
+          <p>At a 5% annual rate over 20 years, approximately $3,300/month. Actual payouts vary based on your age, type of annuity, and the insurance company.</p>
+          <h3>Are annuity payments taxable?</h3>
+          <p>It depends. Qualified annuities (funded with pre-tax money) are fully taxable. Non-qualified annuities (after-tax money) are partially tax-free — only the earnings portion is taxed.</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
+    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+  </div></footer>
+
+  <script>
+  function calcAnnuity() {
+    const principal = +document.getElementById('principal').value;
+    const annualRate = (+document.getElementById('annuity-rate').value || 0) / 100;
+    const years = +document.getElementById('annuity-period').value;
+    const freq = +document.getElementById('payout-freq').value;
+
+    const rate = annualRate / freq;
+    const n = years * freq;
+    let payment;
+    if (rate === 0) { payment = principal / n; }
+    else { payment = principal * (rate * Math.pow(1 + rate, n)) / (Math.pow(1 + rate, n) - 1); }
+
+    const totalPayouts = payment * n;
+    const totalInterest = totalPayouts - principal;
+    const ratio = ((totalPayouts / principal) * 100).toFixed(1);
+
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    const fmt0 = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+    document.getElementById('payout').textContent = fmt(payment);
+    document.getElementById('total-payouts').textContent = fmt0(totalPayouts);
+    document.getElementById('total-interest').textContent = fmt0(totalInterest);
+    document.getElementById('annual-payout').textContent = fmt0(payment * freq);
+    document.getElementById('payout-ratio').textContent = ratio + '%';
+    document.getElementById('results').classList.add('visible');
+  }
+  calcAnnuity();
+  </script>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
