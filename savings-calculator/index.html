@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Calculator - Savings Goal & Growth Calculator</title>
+  <meta name="description" content="Free savings calculator. Calculate how long to reach your savings goal, how much to save monthly, and how your savings grow with interest.">
+  <meta name="keywords" content="savings calculator, savings goal calculator, how much to save, monthly savings calculator, high yield savings calculator">
+  <link rel="canonical" href="https://calc.wiseclick.site/savings-calculator/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Savings Calculator","description":"Free savings goal and growth calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a href="/" class="site-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>FinanceToolHub</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+  </div></header>
+
+  <main>
+    <nav class="breadcrumb"><a href="/">Home</a> / <span>Savings Calculator</span></nav>
+    <div class="calc-page">
+      <h1>Savings Calculator</h1>
+      <p class="subtitle">Calculate how long it takes to reach your savings goal and how much to save each month.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" onsubmit="return false;">
+          <div class="form-group"><label for="goal">Savings Goal ($)</label><input type="number" id="goal" value="50000" min="100" step="1000"></div>
+          <div class="form-group"><label for="initial">Current Savings ($)</label><input type="number" id="initial" value="5000" min="0" step="500"></div>
+          <div class="form-group"><label for="monthly-save">Monthly Savings ($)</label><input type="number" id="monthly-save" value="500" min="0" step="50"></div>
+          <div class="form-group"><label for="savings-rate">Annual Interest Rate (%)</label><input type="number" id="savings-rate" value="4.5" min="0" max="20" step="0.1"></div>
+          <button type="button" class="btn-calculate" onclick="calcSavings()">Calculate</button>
+        </form>
+        <div class="calc-results" id="results">
+          <div class="result-highlight"><div class="label">Time to Reach Goal</div><div class="value" id="time-to-goal">0 months</div></div>
+          <div class="result-details">
+            <div class="result-item"><div class="label">Total Deposited</div><div class="value" id="total-deposited">$0</div></div>
+            <div class="result-item"><div class="label">Interest Earned</div><div class="value" id="interest-earned">$0</div></div>
+            <div class="result-item"><div class="label">Final Balance</div><div class="value" id="final-balance">$0</div></div>
+            <div class="result-item"><div class="label">Interest Contribution</div><div class="value" id="interest-pct">0%</div></div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">🐷</div>
+            <h3>Find the Best Savings Rate</h3>
+            <p>Compare high-yield savings accounts to grow your money faster.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Compare Rates</a>
+            <p class="affiliate-disclosure">We may earn a referral fee if you open an account. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How to Reach Your Savings Goal Faster</h2>
+          <ul>
+            <li><strong>Use a high-yield savings account</strong> — Online banks offer 4-5% APY vs. 0.01% at traditional banks.</li>
+            <li><strong>Automate your savings</strong> — Set up automatic transfers on payday. "Pay yourself first."</li>
+            <li><strong>Cut one subscription</strong> — $15/month saved = $1,080 in 5 years with interest.</li>
+            <li><strong>Round up purchases</strong> — Apps like Acorns round up to the nearest dollar and invest the difference.</li>
+            <li><strong>Increase contributions yearly</strong> — Add half of any raise to your savings rate.</li>
+          </ul>
+        </div>
+        <div class="seo-block">
+          <h2>Where to Keep Your Savings</h2>
+          <ul>
+            <li><strong>High-Yield Savings Account</strong> — 4-5% APY, FDIC insured, easy access. Best for emergency funds and short-term goals.</li>
+            <li><strong>Money Market Account</strong> — Similar rates, check-writing ability, higher minimums.</li>
+            <li><strong>Certificate of Deposit (CD)</strong> — Higher rates for locking money 6-60 months. Penalty for early withdrawal.</li>
+            <li><strong>Treasury Bills</strong> — 4-5% returns, backed by US government, state tax exempt.</li>
+          </ul>
+          <h3>Emergency Fund First</h3>
+          <p>Before investing, save 3-6 months of expenses in a high-yield savings account. This is your financial safety net for job loss, medical bills, or car repairs.</p>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>How much should I save each month?</h3>
+          <p>Follow the 50/30/20 rule: 50% needs, 30% wants, 20% savings/debt repayment. On $5,000/month take-home, that's $1,000/month toward savings.</p>
+          <h3>How does compound interest help my savings?</h3>
+          <p>With a 4.5% APY on $500/month, you deposit $30,000 over 5 years but end up with $33,700 — $3,700 in free money from interest. Over 20 years, your $120,000 in deposits grows to $195,000.</p>
+          <h3>Should I save or invest?</h3>
+          <p>Save for goals within 5 years (down payment, emergency fund). Invest for longer-term goals (retirement, college). Savings are safe but returns are lower. Investing has higher potential but with risk.</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer"><div class="footer-inner">
+    <ul class="footer-links"><li><a href="/about/">About</a></li><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Service</a></li></ul>
+    <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+  </div></footer>
+
+  <script>
+  function calcSavings() {
+    const goal = +document.getElementById('goal').value;
+    const initial = +document.getElementById('initial').value || 0;
+    const monthly = +document.getElementById('monthly-save').value || 0;
+    const rate = (+document.getElementById('savings-rate').value || 0) / 100 / 12;
+
+    if (monthly <= 0 && initial >= goal) { alert('You already reached your goal!'); return; }
+
+    let balance = initial, months = 0, totalDeposited = initial;
+    while (balance < goal && months < 1200) {
+      balance += balance * rate + monthly;
+      totalDeposited += monthly;
+      months++;
+    }
+
+    if (balance < goal) { alert('Cannot reach goal with current inputs within 100 years.'); return; }
+
+    const interest = balance - totalDeposited;
+    const years = Math.floor(months / 12);
+    const remainMonths = months % 12;
+    const timeStr = years > 0 ? `${years}y ${remainMonths}m` : `${months} months`;
+    const interestPct = ((interest / balance) * 100).toFixed(1);
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+    document.getElementById('time-to-goal').textContent = timeStr;
+    document.getElementById('total-deposited').textContent = fmt(totalDeposited);
+    document.getElementById('interest-earned').textContent = fmt(interest);
+    document.getElementById('final-balance').textContent = fmt(balance);
+    document.getElementById('interest-pct').textContent = interestPct + '%';
+    document.getElementById('results').classList.add('visible');
+  }
+  calcSavings();
+  </script>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
