@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Payoff Calculator - How Long to Pay Off Your Card</title>
+  <meta name="description" content="Free credit card payoff calculator. Find out how long it takes to pay off your credit card balance and how much interest you'll pay. See different payoff strategies.">
+  <meta name="keywords" content="credit card payoff calculator, debt payoff calculator, credit card interest calculator, how long to pay off credit card">
+  <link rel="canonical" href="https://calc.wiseclick.site/credit-card-payoff-calculator/">
+  <meta property="og:title" content="Credit Card Payoff Calculator - Free Debt Payoff Tool">
+  <meta property="og:description" content="Calculate how long it takes to pay off your credit card and how much interest you'll pay.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Credit Card Payoff Calculator",
+    "description": "Free online credit card payoff calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        FinanceToolHub
+      </a>
+      <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="/" id="nav-home">Home</a></li>
+        <li><a href="/mortgage-calculator/" id="nav-mortgage">Mortgage</a></li>
+        <li><a href="/loan-calculator/" id="nav-loan">Loan</a></li>
+        <li><a href="/compound-interest-calculator/" id="nav-compound">Compound Interest</a></li>
+        <li><a href="/credit-card-payoff-calculator/" id="nav-cc">Credit Card</a></li>
+        <li><a href="/auto-loan-calculator/" id="nav-auto">Auto Loan</a></li>
+        <li><a href="/retirement-calculator/" id="nav-retire">Retirement</a></li>
+        <li><a href="/401k-calculator/" id="nav-401k">401(k)</a></li>
+        <li><a href="/tax-calculator/" id="nav-tax">Tax</a></li>
+        <li><a href="/annuity-calculator/" id="nav-annuity">Annuity</a></li>
+        <li><a href="/savings-calculator/" id="nav-savings">Savings</a></li>
+        <li><a href="/paycheck-calculator/" id="nav-paycheck">Paycheck</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumb">
+      <a href="/">Home</a> / <span>Credit Card Payoff Calculator</span>
+    </nav>
+
+    <div class="calc-page">
+      <h1>Credit Card Payoff Calculator</h1>
+      <p class="subtitle">Find out how long it takes to pay off your credit card and how much interest you'll pay.</p>
+
+      <div class="calc-tool">
+        <form class="calc-form" id="cc-form" onsubmit="return false;">
+          <div class="form-group">
+            <label for="cc-balance">Current Balance ($)</label>
+            <input type="number" id="cc-balance" value="5000" min="1" step="100">
+          </div>
+          <div class="form-group">
+            <label for="cc-apr">Annual Percentage Rate - APR (%)</label>
+            <input type="number" id="cc-apr" value="24.99" min="0" max="50" step="0.1">
+          </div>
+          <div class="form-group">
+            <label for="cc-payment">Monthly Payment ($)</label>
+            <input type="number" id="cc-payment" value="200" min="1" step="10">
+          </div>
+          <div class="form-group">
+            <label for="cc-strategy">Or: Payoff Goal</label>
+            <select id="cc-strategy">
+              <option value="fixed">Fixed Monthly Payment</option>
+              <option value="12">Pay off in 12 months</option>
+              <option value="24">Pay off in 24 months</option>
+              <option value="36">Pay off in 36 months</option>
+            </select>
+          </div>
+          <button type="button" class="btn-calculate" onclick="calculateCC()">Calculate</button>
+        </form>
+
+        <div class="calc-results" id="results">
+          <div class="result-highlight">
+            <div class="label">Time to Pay Off</div>
+            <div class="value" id="time-to-payoff">0 months</div>
+          </div>
+          <div class="result-details">
+            <div class="result-item">
+              <div class="label">Monthly Payment</div>
+              <div class="value" id="required-payment">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total Interest Paid</div>
+              <div class="value" id="total-interest">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Total Amount Paid</div>
+              <div class="value" id="total-paid">$0</div>
+            </div>
+            <div class="result-item">
+              <div class="label">Interest-to-Principal Ratio</div>
+              <div class="value" id="interest-percent">0%</div>
+            </div>
+          </div>
+        </div>
+        <div class="cta-section" id="cta-section">
+          <div class="cta-card">
+            <div class="cta-icon">💳</div>
+            <h3>Find a Better Credit Card</h3>
+            <p>Compare balance transfer cards with 0% APR to pay off debt faster and save on interest.</p>
+            <a href="#" class="cta-button" target="_blank" rel="noopener sponsored">Compare Credit Cards</a>
+            <p class="affiliate-disclosure">We may earn a referral fee if you apply for a card. This does not affect our calculator results.</p>
+          </div>
+        </div>
+      </div>
+      <div class="seo-content">
+        <div class="seo-block">
+          <h2>How Credit Card Interest Works</h2>
+          <p>Credit cards use daily compounding interest based on your APR. If you don't pay the full balance each month, interest is charged on the remaining balance. The average credit card APR in 2026 is around 24%.</p>
+          <h3>Minimum Payment Trap</h3>
+          <p>Most cards require a minimum payment of 1-3% of the balance. Paying only the minimum on a $5,000 balance at 25% APR would take over <strong>20 years</strong> to pay off and cost over $10,000 in interest — more than double what you borrowed.</p>
+        </div>
+        <div class="seo-block">
+          <h2>Strategies to Pay Off Credit Card Debt Faster</h2>
+          <ul>
+            <li><strong>Avalanche method</strong> — Pay the card with the highest APR first. Saves the most interest.</li>
+            <li><strong>Snowball method</strong> — Pay the smallest balance first. Builds momentum and motivation.</li>
+            <li><strong>Balance transfer</strong> — Move debt to a 0% APR card. Save interest during the promo period.</li>
+            <li><strong>Debt consolidation loan</strong> — Get a personal loan at a lower rate to pay off all cards.</li>
+            <li><strong>Negotiate your rate</strong> — Call your card issuer and ask for a lower APR. It works more often than you'd think.</li>
+          </ul>
+        </div>
+        <div class="seo-block full-width">
+          <h2>Frequently Asked Questions</h2>
+          <h3>How much should I pay each month?</h3>
+          <p>Pay as much as you can above the minimum. Even adding $50/month to your payment can save hundreds in interest and shave years off your payoff time. Use this calculator to see the impact.</p>
+          <h3>What happens if I only pay the minimum?</h3>
+          <p>You'll pay dramatically more in total interest and take years or decades to clear the balance. Always try to pay more than the minimum — even a small increase makes a big difference.</p>
+          <h3>Is it better to pay off credit cards or save?</h3>
+          <p>If your card APR is higher than your savings rate (which is almost always true), pay the card first. You save more in interest than you earn in savings. Keep a small emergency fund, then attack the debt.</p>
+        </div>
+      </div>
+    </div>
+  
+      <div class="seo-block full-width" style="background:var(--bg-secondary);border-style:dashed;margin-top:1rem">
+        <h2>Disclaimer</h2>
+        <p>This calculator is for <strong>educational and estimation purposes only</strong>. It does not constitute financial, tax, or investment advice. Results are estimates based on the inputs you provide and may not reflect your actual situation. Consult a qualified financial advisor, tax professional, or lender before making important financial decisions.</p>
+      </div>
+    
+    </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/privacy/">Privacy Policy</a></li>
+        <li><a href="/terms/">Terms of Service</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 FinanceToolHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  function calculateCC() {
+    let balance = parseFloat(document.getElementById('cc-balance').value);
+    const apr = parseFloat(document.getElementById('cc-apr').value);
+    const strategy = document.getElementById('cc-strategy').value;
+    const monthlyRate = apr / 100 / 12;
+
+    let monthlyPayment, months, totalInterest, totalPaid;
+
+    if (strategy === 'fixed') {
+      monthlyPayment = parseFloat(document.getElementById('cc-payment').value);
+      if (monthlyPayment <= balance * monthlyRate) {
+        alert('Monthly payment must be greater than the monthly interest charge ($' + (balance * monthlyRate).toFixed(2) + ').');
+        return;
+      }
+      // Calculate months
+      let tempBalance = balance;
+      months = 0;
+      totalInterest = 0;
+      while (tempBalance > 0 && months < 600) {
+        const interest = tempBalance * monthlyRate;
+        totalInterest += interest;
+        tempBalance = tempBalance + interest - monthlyPayment;
+        months++;
+      }
+      totalPaid = balance + totalInterest;
+    } else {
+      months = parseInt(strategy);
+      // Calculate required monthly payment
+      if (monthlyRate === 0) {
+        monthlyPayment = balance / months;
+      } else {
+        monthlyPayment = balance * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+      }
+      totalPaid = monthlyPayment * months;
+      totalInterest = totalPaid - balance;
+    }
+
+    const fmt = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    const years = Math.floor(months / 12);
+    const remainMonths = months % 12;
+    const timeStr = years > 0 ? `${years}y ${remainMonths}m` : `${months} months`;
+
+    document.getElementById('time-to-payoff').textContent = timeStr;
+    document.getElementById('required-payment').textContent = fmt(monthlyPayment);
+    document.getElementById('total-interest').textContent = fmt(totalInterest);
+    document.getElementById('total-paid').textContent = fmt(totalPaid);
+    document.getElementById('interest-percent').textContent = ((totalInterest / balance) * 100).toFixed(1) + '%';
+    document.getElementById('results').classList.add('visible');
+  }
+
+  calculateCC();
+  </script>
+
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p>We use cookies for analytics and advertising. <a href="/privacy/">Learn more</a>. You can accept or reject non-essential cookies.</p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Reject</button>
+  </div>
+  <script>
+  function acceptCookies(){localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.add('hidden');loadNonEssentialScripts();}
+  function rejectCookies(){localStorage.setItem('cookie-consent','rejected');document.getElementById('cookie-banner').classList.add('hidden');}
+  function loadNonEssentialScripts(){if(localStorage.getItem('cookie-consent')!=='accepted')return;/* Add AdSense/Analytics here when ready */}
+  if(localStorage.getItem('cookie-consent')!==null)document.getElementById('cookie-banner').classList.add('hidden');
+  if(localStorage.getItem('cookie-consent')==='accepted')loadNonEssentialScripts();
+  </script>
+
+</body>
+</html>
